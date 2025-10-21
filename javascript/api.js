@@ -54,7 +54,7 @@ dollArea.addEventListener("touchend", (e) => {
 
 // -------------------- LOAD CLOTHES --------------------
 function loadClothes(clothesArray) {
-  clothesArea.innerHTML = "";
+  clothesArea.innerHTML = ""; // clear previous clothes
   clothesArray.forEach((img) => {
     const el = document.createElement("img");
     el.src = `images/${img}`;
@@ -85,5 +85,6 @@ boyBtn.addEventListener("click", () => {
 });
 
 // -------------------- INITIAL LOAD --------------------
-loadClothes(unisexClothes); // single clothes panel for both dolls
+loadClothes(unisexClothes);
+
 

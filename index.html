@@ -1,36 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dress Up the Doll!</title>
-    <link rel="stylesheet" href="style.css" />
-    <script type="text/javascript" src="api/api.js"></script>
-  </head>
-  <body>
-    <h1 class="title">🎀 Dress Up the Doll! 🎀</h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dress Up the Doll!</title>
+  <link rel="stylesheet" href="style.css" />
+  <script type="text/javascript" src="api/api.js" defer></script>
+</head>
+<body>
+  <h1 class="title">🎀 Dress Up the Doll! 🎀</h1>
 
-    <div class="toggle-container">
-      <button id="girlBtn" class="toggle active">👧 Girl</button>
-      <button id="boyBtn" class="toggle">👦 Boy</button>
+  <div class="toggle-container">
+    <button id="girlBtn" class="toggle active">👧 Girl</button>
+    <button id="boyBtn" class="toggle">👦 Boy</button>
+  </div>
+
+  <div class="game-container">
+    <div class="doll-area">
+      <img src="images/lightgirl.png" id="doll" alt="Doll Base" />
     </div>
 
-    <div class="game-container">
-      <div class="doll-area">
-        <img src="images/lightgirl.png" id="doll" alt="Doll Base" />
-      </div>
+    <div class="clothes-area"></div>
+  </div>
 
-      <div class="clothes-area">
-        <img src="images/dress.png" class="draggable" alt="Dress" />
-        <img src="images/browntop.png" class="draggable" alt="Brown Top" />
-        <img src="images/trouserb.png" class="draggable" alt="Trousers" />
-        <img src="images/hatbrown.png" class="draggable" alt="Brown Hat" />
-        <img src="images/lightbrownshoe.png" class="draggable" alt="Shoes" />
-        <img src="images/greentee.png" class="draggable" alt="Green Tee" />
-        <img src="images/girlskirt1.png" class="draggable" alt="Skirt" />
-      </div>
-    </div>
-
-    <button id="resetBtn">Reset Outfit</button>
-  </body>
+  <button id="resetBtn">Reset Outfit</button>
+</body>
 </html>

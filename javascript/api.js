@@ -1,4 +1,3 @@
-// -------------------- ELEMENTS --------------------
 const dollGirl = document.getElementById("doll-girl");
 const dollBoy = document.getElementById("doll-boy");
 const dollArea = document.querySelector(".doll-area");
@@ -9,46 +8,41 @@ const boyBtn = document.getElementById("boyBtn");
 
 // -------------------- DRAG & DROP --------------------
 function addDragEvents(item) {
-  item.addEventListener("dragstart", (e) => {
+  item.addEventListener("dragstart", e => {
     e.dataTransfer.setData("text/plain", null);
     item.classList.add("dragging");
   });
   item.addEventListener("touchstart", () => item.classList.add("dragging"));
 }
 
-function enableDragForAll() {
-  document.querySelectorAll(".draggable").forEach(addDragEvents);
-}
-
 function dropItem(x, y) {
   const dragging = document.querySelector(".dragging");
   if (!dragging) return;
-
   const rect = dollArea.getBoundingClientRect();
   const clone = dragging.cloneNode(true);
   clone.style.position = "absolute";
-  clone.style.left = `${x - rect.left - dragging.width / 2}px`;
-  clone.style.top = `${y - rect.top - dragging.height / 2}px`;
+  clone.style.left = `${x - rect.left - dragging.width/2}px`;
+  clone.style.top = `${y - rect.top - dragging.height/2}px`;
   clone.classList.remove("dragging");
   dollArea.appendChild(clone);
 }
 
-// Drag & Drop Events
-dollArea.addEventListener("dragover", (e) => e.preventDefault());
-dollArea.addEventListener("drop", (e) => {
+dollArea.addEventListener("dragover", e => e.preventDefault());
+dollArea.addEventListener("drop", e => {
   e.preventDefault();
   dropItem(e.clientX, e.clientY);
 });
-dollArea.addEventListener("touchend", (e) => {
+dollArea.addEventListener("touchend", e => {
   const touch = e.changedTouches[0];
   dropItem(touch.clientX, touch.clientY);
 });
 
-// -------------------- RESET FUNCTION --------------------
+// Enable dragging for all clothes in HTML
+document.querySelectorAll(".draggable").forEach(addDragEvents);
+
+// -------------------- RESET --------------------
 resetBtn.addEventListener("click", () => {
-  document
-    .querySelectorAll(".doll-area img:not(#doll-girl):not(#doll-boy)")
-    .forEach((i) => i.remove());
+  document.querySelectorAll(".doll-area img:not(#doll-girl):not(#doll-boy)").forEach(i => i.remove());
 });
 
 // -------------------- TOGGLE DOLLS --------------------
@@ -66,6 +60,4 @@ boyBtn.addEventListener("click", () => {
   girlBtn.classList.remove("active");
 });
 
-// -------------------- INITIAL SETUP --------------------
-enableDragForAll(); // Attach drag events to all existing clothes in HTML
 

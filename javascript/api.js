@@ -31,23 +31,10 @@ function addDragEvents(item) {
 }
 
 function enableDragForAll() {
-  const draggables = document.querySelectorAll(".draggable");
-  draggables.forEach((item) => addDragEvents(item));
+  document.querySelectorAll(".draggable").forEach(addDragEvents);
 }
 
 // -------------------- DROP AREA --------------------
-dollArea.addEventListener("dragover", (e) => e.preventDefault());
-
-dollArea.addEventListener("drop", (e) => {
-  e.preventDefault();
-  dropItem(e.clientX, e.clientY);
-});
-
-dollArea.addEventListener("touchend", (e) => {
-  const touch = e.changedTouches[0];
-  dropItem(touch.clientX, touch.clientY);
-});
-
 function dropItem(x, y){
   const dragging = document.querySelector(".dragging");
   if(dragging){
@@ -61,17 +48,25 @@ function dropItem(x, y){
   }
 }
 
+dollArea.addEventListener("dragover", (e) => e.preventDefault());
+dollArea.addEventListener("drop", (e) => {
+  e.preventDefault();
+  dropItem(e.clientX, e.clientY);
+});
+dollArea.addEventListener("touchend", (e) => {
+  const touch = e.changedTouches[0];
+  dropItem(touch.clientX, touch.clientY);
+});
+
 // -------------------- HIGHLIGHT DOLL AREA --------------------
 dollArea.addEventListener("dragenter", () => {
   dollArea.style.borderColor = "#c94e8a";
   dollArea.style.background = "#fff0f8";
 });
-
 dollArea.addEventListener("dragleave", () => {
   dollArea.style.borderColor = "#aaa";
   dollArea.style.background = "#fff";
 });
-
 document.addEventListener("touchmove", (e) => {
   const dragging = document.querySelector(".dragging");
   if (!dragging) return;
@@ -86,8 +81,6 @@ document.addEventListener("touchmove", (e) => {
     dollArea.style.background = "#fff";
   }
 });
-
-// Reset highlight on drop
 dollArea.addEventListener("drop", () => {
   dollArea.style.borderColor = "#aaa";
   dollArea.style.background = "#fff";
@@ -131,7 +124,5 @@ boyBtn.addEventListener("click", () => {
 
 // -------------------- INITIAL LOAD --------------------
 loadClothes(girlClothes);
-
-
 
 

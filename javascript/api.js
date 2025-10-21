@@ -14,14 +14,26 @@ const girlClothes = [
   "hatbrown.png",
   "lightbrownshoe.png",
   "greentee.png",
-  "girlskirt1.png"
+  "girlskirt1.png",
+  "top.png",
+  "top1.png",
+  "ballgown1.png",
+  "brownjersey1.png"
 ];
 
 const boyClothes = [
   "boyshirt1.png",
   "boytrousers1.png",
   "boyshoelt.png",
-  "boyshoert.png"
+  "boyshoert.png",
+  "jerseygreen.png",
+  "darkbrownshoe1.png",
+  "darkbrownshoe2.png",
+  "darkbrownshoe3.png",
+  "darkbrownshoe4.png",
+  "applet.png",
+  "onez.png",
+  "brownt.png"
 ];
 
 // -------------------- DRAGGABLE LOGIC --------------------
@@ -30,7 +42,6 @@ function addDragEvents(item) {
     e.dataTransfer.setData("text/plain", null);
     e.target.classList.add("dragging");
   });
-
   item.addEventListener("touchstart", () => {
     item.classList.add("dragging");
   });
@@ -42,7 +53,6 @@ function enableDragForAll() {
 }
 
 dollArea.addEventListener("dragover", (e) => e.preventDefault());
-
 dollArea.addEventListener("drop", (e) => {
   e.preventDefault();
   const dragging = document.querySelector(".dragging");
@@ -59,6 +69,23 @@ dollArea.addEventListener("drop", (e) => {
   }
 });
 
+// Mobile touch support
+dollArea.addEventListener("touchend", (e) => {
+  const dragging = document.querySelector(".dragging");
+  if (dragging) {
+    const rect = dollArea.getBoundingClientRect();
+    const touch = e.changedTouches[0];
+    const x = touch.clientX - rect.left - dragging.width / 2;
+    const y = touch.clientY - rect.top - dragging.height / 2;
+    const clone = dragging.cloneNode(true);
+    clone.style.position = "absolute";
+    clone.style.left = `${x}px`;
+    clone.style.top = `${y}px`;
+    clone.classList.remove("dragging");
+    dollArea.appendChild(clone);
+  }
+});
+
 document.addEventListener("dragend", () => {
   const dragging = document.querySelector(".dragging");
   if (dragging) dragging.classList.remove("dragging");
@@ -66,22 +93,21 @@ document.addEventListener("dragend", () => {
 
 // -------------------- LOAD CLOTHES --------------------
 function loadClothes(clothesArray) {
-  clothesArea.innerHTML = ""; // Clear existing clothes
+  clothesArea.innerHTML = ""; // Clear previous
   clothesArray.forEach((img) => {
     const el = document.createElement("img");
     el.src = `images/${img}`;
-    el.classList.add("draggable");
     el.alt = img;
+    el.classList.add("draggable");
     clothesArea.appendChild(el);
     addDragEvents(el);
   });
+  enableDragForAll();
 }
 
 // -------------------- RESET FUNCTION --------------------
 resetBtn.addEventListener("click", () => {
-  document
-    .querySelectorAll(".doll-area img:not(#doll)")
-    .forEach((item) => item.remove());
+  document.querySelectorAll(".doll-area img:not(#doll)").forEach((i) => i.remove());
 });
 
 // -------------------- TOGGLE DOLLS --------------------
@@ -103,3 +129,5 @@ boyBtn.addEventListener("click", () => {
 
 // -------------------- INITIAL LOAD --------------------
 loadClothes(girlClothes); // default to girl
+
+ 

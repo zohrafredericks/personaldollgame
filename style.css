@@ -47,6 +47,7 @@ body {
   border: 2px dashed #aaa;
   background: #fff;
   border-radius: 15px;
+  transition: all 0.2s;
 }
 
 .doll-area img#doll {
@@ -60,7 +61,7 @@ body {
 .clothes-area {
   display: flex;
   gap: 10px;
-  overflow-x: auto; /* scroll horizontally on small screens */
+  overflow-x: auto;
   padding: 5px;
   max-width: 95%;
 }
@@ -75,7 +76,7 @@ body {
 }
 
 .draggable {
-  flex: 0 0 auto; /* prevents shrinking in scroll */
+  flex: 0 0 auto;
   width: 90px;
   height: 90px;
   cursor: grab;
@@ -114,5 +115,6 @@ body {
     height: 100px;
   }
 }
+
 
 

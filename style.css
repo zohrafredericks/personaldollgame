@@ -1,58 +1,26 @@
-body {
-  margin: 0;
-  font-family: 'Roboto', sans-serif;
-  background: #ffe4f3;
-  text-align: center;
-  padding: 10px;
-}
-
-.title {
-  margin: 10px 0;
-  font-size: 1.8rem;
-}
-
-.toggle-container {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 15px;
-}
-
-.toggle {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 10px;
-  background: #ccc;
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-.toggle.active {
-  background: #c94e8a;
-  color: #fff;
-}
-
-.game-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-}
-
 /* ---------------- DOLL AREA ---------------- */
 .doll-area {
   position: relative;
-  width: 250px;
-  height: 400px;
+  width: 300px;          /* width of the doll container */
+  height: 500px;         /* height of the doll container */
   border: 2px dashed #aaa;
   background: #fff;
   border-radius: 15px;
+  overflow: hidden;      /* ensures clothes don’t go outside */
   transition: all 0.2s;
+  margin: 0 auto;        /* center on page */
 }
 
-.doll-area img#doll {
-  width: 100%;
-  height: auto;
+/* Both dolls */
+.doll-area img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* center in container */
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;          /* keeps aspect ratio */
+  height: auto;         /* keeps aspect ratio */
   pointer-events: none;
   user-select: none;
 }
@@ -64,15 +32,7 @@ body {
   overflow-x: auto;
   padding: 5px;
   max-width: 95%;
-}
-
-.clothes-area::-webkit-scrollbar {
-  height: 8px;
-}
-
-.clothes-area::-webkit-scrollbar-thumb {
-  background: #c94e8a;
-  border-radius: 4px;
+  margin: 15px auto;
 }
 
 .draggable {
@@ -100,21 +60,15 @@ body {
 }
 
 /* ---------------- RESPONSIVE ---------------- */
-@media (min-width: 600px) {
-  .game-container {
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
-  }
+@media (max-width: 768px) {
   .doll-area {
-    width: 300px;
-    height: 500px;
+    width: 250px;
+    height: 400px;
   }
+
   .draggable {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
   }
 }
-
-
 

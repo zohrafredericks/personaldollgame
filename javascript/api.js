@@ -87,4 +87,3 @@ boyBtn.addEventListener("click", () => {
 // -------------------- INITIAL LOAD --------------------
 loadClothes(unisexClothes); // single clothes panel for both dolls
 
-
